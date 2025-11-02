@@ -4,9 +4,9 @@ from datetime import datetime, timedelta
 import random
 
 # --- Config ---
-num_rows = 200
-start_date = datetime(2024, 9, 1)
-end_date = datetime(2024, 11, 30)
+num_rows = 1000
+start_date = datetime(2024, 8, 28)
+end_date = datetime(2025, 11, 30)
 
 routes = ["Route A", "Route B", "Route C", "Route D"]
 warehouses = ["WH1", "WH2", "WH3", "WH4"]
@@ -34,6 +34,6 @@ df = pd.DataFrame(data, columns=[
 ])
 
 # --- Save to CSV ---
-df.to_csv("shipments.csv", index=False)
+df.to_csv("D:/AI/Hermes/Data/shipments.csv", index=False)
 print("Created shipments.csv with", len(df), "rows.")
 df.head()

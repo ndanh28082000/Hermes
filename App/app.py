@@ -5,9 +5,14 @@ import matplotlib.pyplot as plt
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from Utils.analytics import load_data
 from Utils.query_parser import handle_query
+from LLM.llm_handler import LlmHandler
 
 st.set_page_config(page_title="Hermes", page_icon="🧠", layout="wide")
 st.title("🧠 Hermes — AI Logistics Analyst")
+
+# Initialize LLM handler once
+if "llm_handler" not in st.session_state:
+    st.session_state.llm_handler = LlmHandler()
 
 # Session Memory
 if "chat_history" not in st.session_state:
@@ -28,7 +33,7 @@ if user_input:
     st.chat_message("user").write(user_input)
 
     with st.spinner("Hermes is analyzing your question..."):
-        answer, fig = handle_query(user_input, df, chat_context=context)
+        answer, fig = handle_query(user_input, df, st.session_state.llm_handler, chat_context=context)
 
     st.chat_message("assistant").write(answer)
     if fig:

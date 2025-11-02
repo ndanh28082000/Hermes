@@ -3,7 +3,7 @@ import requests
 
 class LlmHandler:
     def __init__(self):
-        self.HF_TOKEN = os.getenv("HF_TOKEN", "...your_token_here...")
+        self.HF_TOKEN = os.getenv("HF_TOKEN", "...your_huggingface_token_here...")
         self.API_URL = "https://router.huggingface.co/v1/chat/completions"
         self.MODEL = "meta-llama/Llama-3.1-8B-Instruct:fireworks-ai"
 
