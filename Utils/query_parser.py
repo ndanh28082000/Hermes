@@ -31,7 +31,8 @@ def _extract_threshold_from_text(text: str):
     text = _normalize_text(text)
     print("[DEBUG] Normalized text for threshold detection:", text)
 
-    pattern = r"(?:above|over|greater\s+than|more\s+than|>\s*)(\d+(?:\.\d+)?)\s*(?:days?|d)?"
+    # Accept variations like "above 5 days", "over 3d", "greater than 4.5", ">= 6", "at least 2"
+    pattern = r"(?:above|over|greater\s+than|more\s+than|at\s+least|>=|<=|>|<|>=|<=|>\s*|<\s*|>=\s*|<=\s*|\>|\<)\s*(\d+(?:\.\d+)?)\s*(?:days?|d)?"
     match = re.search(pattern, text)
     if match:
         value = float(match.group(1))
